@@ -3,18 +3,6 @@
     "node": true,
     "es6": true
   },
-  "extends": ["standard", "standard-jsx", "plugin:node/recommended"],
-  "plugins": ["sort-imports-es6-autofix", "node"],
-  "rules": {
-    "sort-imports-es6-autofix/sort-imports-es6": [
-      2,
-      {
-        "ignoreCase": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-      }
-    ],
-    "indent": ["warn", 2],
-    "react/jsx-indent": ["off", 2]
-  }
+  "extends": ["standard", "plugin:node/recommended"],
+  "plugins": ["node"]
 }
