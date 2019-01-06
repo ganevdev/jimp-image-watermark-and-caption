@@ -39,7 +39,7 @@ async function watermarkTextToImg (image, text = 'watermark text') {
   let watermarkTextImg = new Jimp(500, 30)
   watermarkTextImg = await watermarkTextImg.print(font, 0, 0, watermarkText)
   watermarkTextImg = await watermarkTextImg.rotate(45)
-  watermarkTextImg = await watermarkTextImg.opacity(0.15)
+  watermarkTextImg = await watermarkTextImg.opacity(0.2)
   // создадим массив цифр при помощи lodash/range используя ширину картинки
   // при помощи этого массива мы заполним картинку нашим текстовым ватермарком
   let imgHeightRange = range(-imgHeight, imgHeight, 60)
