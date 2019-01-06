@@ -27,16 +27,21 @@ async function gradientToImg (image) {
 // текст не задан заранее, так что для каждой картинки можно использовать уникальный текст - название картинки, имя автора, дату создания этой картинки и тд
 async function watermarkTextToImg (image, text = 'watermark text') {
   let img = image
-  let font = await Jimp.loadFont(Jimp.FONT_SANS_16_BLACK)
+  let imgHeight = img.bitmap.height
+  text = text + ' '
+  let watermarkText = text
+  const range = require('lodash/range')
+  range(0, imgHeight / 50).forEach(n => {
+    watermarkText = watermarkText + text
+  })
+  let font = await Jimp.loadFont('./fonts/FONT_ROBOTO_16_WHITE_SHADOW.fnt')
   //
   let watermarkTextImg = new Jimp(500, 30)
-  watermarkTextImg = await watermarkTextImg.print(font, 0, 0, text)
+  watermarkTextImg = await watermarkTextImg.print(font, 0, 0, watermarkText)
   watermarkTextImg = await watermarkTextImg.rotate(45)
-  watermarkTextImg = await watermarkTextImg.opacity(0.3)
+  watermarkTextImg = await watermarkTextImg.opacity(0.15)
   // создадим массив цифр при помощи lodash/range используя ширину картинки
   // при помощи этого массива мы заполним картинку нашим текстовым ватермарком
-  let imgHeight = img.bitmap.height
-  const range = require('lodash/range')
   let imgHeightRange = range(-imgHeight, imgHeight, 60)
   imgHeightRange.forEach(async number => {
     img = await img.composite(watermarkTextImg, 10, number, [
