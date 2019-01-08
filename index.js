@@ -160,7 +160,7 @@ function toAllImage (
     if (allowedExtensions.exec(file)) {
       newImageGen({
         w: 400,
-        image: './images/import/' + file,
+        image: folder + file,
         exp: expFolder + file,
         text: startCase(file),
         // к подписи добавим текущую дату
